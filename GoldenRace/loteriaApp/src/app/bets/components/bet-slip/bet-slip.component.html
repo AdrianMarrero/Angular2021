@@ -1,0 +1,47 @@
+
+<div class="container bck-color-white conf-components">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <button type="button"
+              *ngFor="let ball of dataUserSelection; let i = index "
+              class="btn ms-2 balls-user-selected"
+              [ngClass]="{'btn-primary': ball.selected === true, 'btn-secondary' : ball.selected === false }">
+
+              <span *ngIf="ball.selected">{{ball.id}}</span>
+
+            </button>
+    </div>
+
+    <div class="row justify-content-md-center">
+      <div class="col-8">
+        <form autocomplete="off" [formGroup]='myForm'>
+          <div class="input-group mb-3 mt-5">
+            <span class="input-group-text">5x</span>
+              <input type="number"
+                formControlName="bet"
+                name="bet"
+                class="form-control">
+
+              <button type="button" class="btn btn-primary ms-4" (click)="confirmBet()">Ok</button>
+          </div>
+          <span class="form-text text-danger"
+            *ngIf="myForm.controls.bet.errors && selectionUser > 0">
+            The minimum bet is 5 €.
+          </span>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" *ngIf="win">
+        <p class="text-center"><strong> Total: {{checkWins()}} </strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-primary ms-4" [disabled]="disabledBet" (click)="generarSorteo()">Place bet</button>
+    </div>
+    <div class="row text-center mt-2" *ngIf="selectionUser > 0">
+      <p>You have chosen: {{selectionUser}} and you have bet: {{moneyBet}} euros</p>
+      <p></p>
+    </div>
+  </div>
+</div>

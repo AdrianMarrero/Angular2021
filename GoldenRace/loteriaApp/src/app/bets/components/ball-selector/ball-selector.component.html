@@ -1,0 +1,30 @@
+
+<div class="container bck-color-white conf-components">
+  <div class="row">
+    <h4>Numbers</h4>
+    <div class="col d-flex justify-content-center">
+      <button type="button"
+        *ngFor="let ball of dataUserSelection"
+        class="btn btn-primary ms-2 balls"
+        (click)="selectionUser(ball.id)">
+
+        {{ball.id}}
+      </button>
+    </div>
+    <div class="row">
+      <p class="col d-flex justify-content-center mt-2" (click)="clearSelection()">Clear Selection</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col d-flex justify-content-center text-center">
+      <div *ngIf="finishSorteo">
+        <h4>Result</h4>
+        <button type="button" class="btn btn-primary ms-2 balls parpadea">{{resultadoSorteo}}</button>
+        <h4 *ngIf="!win" class="text-danger">YOU LOOSE</h4>
+        <h4 *ngIf="win" class="text-success">YOU WIN</h4>
+      </div>
+    </div>
+  </div>
+
+</div>
